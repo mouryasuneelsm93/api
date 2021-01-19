@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task</title>
+</head>
+<body>
+<script>
+const proxyUrl='https://cors-anywhere.herokuapp.com/';
+fetch( proxyUrl + 'https://www.google.com/basepages/producttype/taxonomy.en-US.txt' )
+.then(e=>e.text())
+.then(req => {
+     var s = req.split('\n');
+     s.shift();
+     s.pop();
+  s.forEach(element => {
+    
+    let x = element.split('>');
+    for(var i=0;i<x.length;i++)
+    {
+      document.write(len);
+     
+        document.write(' '+x[i]+' '+i+'<br>'); 
+    
+     
+      
+      // document.write(x[0]+"<br>");
+      var obj={
+         parent:x[0],
+         child:x[1],
+         subchild:x[2],
+         s1ubchild:x[3],
+         s2child:x[4],
+       
+     };
+    }  
+    console.log(obj);
+  
+  })
+
+})
+</script>
+<input type="text" id="pa">
+<select id="pa">
+  
+</select>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
