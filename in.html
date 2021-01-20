@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+<div class="jumbotron">
+    <div class="text-center text-muted" style="font-size:40px;">Google Taxonomy</div>
+    <button id='str' class="btn btn-primary">show</button>
+    <button id="str1" class="btn btn-primary">show child</button>
+    <button id="str2" class="btn btn-primary">show sub child</button>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div">
+
+    </div>
+	</div>
+</body>
+<script>
+    var str = "";
+    var str1 = " ";
+    var str2 = " ";
+    var str3 = " ";
+    var str4 = " ";
+    var str5 = " ";
+    var str6 = " ";
+    var str7 = " ";
+    js();
+    var arr1 = [];
+    function js() {
+        
+const proxyUrl='https://cors-anywhere.herokuapp.com/';
+fetch( proxyUrl + 'https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt')
+            .then(e => e.text())
+            .then(req => {
+                var a = req.split("\n");
+                a.splice(0, 1);
+                a.forEach(element => {
+                    element = element.split('-');
+                    var test = element[1].split('>');
+
+                    var n = test[test.length - 1];
+                    if (test.length == 2) {
+                        arr1.push(test[test.length - 1]);
+                    }
+                    console.log(arr1[arr1.length - 1]);
+                    if (test.length == 1) {
+
+                        for (i = 0; i < test.length; i++) {
+                            str += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                        }
+                        $(".div1").append((str + n + "<span  > > </span>" + "<br>"));
+
+                        str = " ";
+                    }
+                    $("#str").click(function () {
+                        $(".div1").remove();
+                        if (test.length == 1) {
+
+                            for (i = 0; i < test.length; i++) {
+                                str2 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                            }
+                            $(".div").append((str2 + n + "<br>"));
+
+                            str2 = " ";
+                        }
+                        if (test.length == 2) {
+
+                            for (i = 0; i < test.length; i++) {
+                                str1 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                            }
+                            $(".div").append((str1 + n + "<span  > > </span>" + "<br>"));
+                            str1 = " ";
+                        }
+
+                    });
+                    $("#str1").click(function () {
+                        $(".div1").remove();
+                        $(".div").remove();
+                        if (test.length == 1) {
+
+                            for (i = 0; i < test.length; i++) {
+                                str2 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                            }
+                            $(".div2").append((str2 + n + "<br>"));
+
+                            str2 = " ";
+                        }
+                        if (test.length == 2) {
+
+                            for (i = 0; i < test.length; i++) {
+                                str1 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                            }
+                            $(".div2").append((str1 + n + "<br>"));
+                            str1 = " ";
+                        }
+                        if (test.length == 3) {
+
+                            for (i = 0; i < test.length; i++) {
+                                str3 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                            }
+                            $(".div2").append((str3 + n + "<span  > > </span>" + "<br>"));
+                            str3 = " ";
+                        }
+                    });
+                    $("#str2").click(function () {
+                        $(".div1").remove();
+                        $(".div").remove();
+                        $(".div2").remove();
+                        if (test.length == 1) {
+
+                            for (i = 0; i < test.length; i++) {
+                                str5 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                            }
+                            $(".div3").append((str5 + n + "<br>"));
+
+                            str5 = " ";
+                        }
+                        if (test.length == 2) {
+
+                            for (i = 0; i < test.length; i++) {
+                                str6 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                            }
+                            $(".div3").append((str6 + n + "<br>"));
+                            str6 = " ";
+                        }
+                        if (test.length == 3) {
+
+                            for (i = 0; i < test.length; i++) {
+                                str7 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                            }
+                            $(".div3").append((str7 + n + "<br>"));
+                            str7 = " ";
+                        }
+                        if (test.length == 4) {
+
+                            for (i = 0; i < test.length; i++) {
+                                str4 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                            }
+                            $(".div3").append((str4 + n + "<span  > > </span>" + "<br>"));
+                            str4 = " ";
+                        }
+                        console.log(arr1[arr1.length - 1]);
+                    });
+                });
+            })
+    }
+</script>
+
+</html>
