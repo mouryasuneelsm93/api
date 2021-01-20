@@ -1,162 +1,164 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <title>task</title>
 </head>
-
 <body>
-<div class="jumbotron">
-    <div class="text-center text-muted" style="font-size:40px;">Google Taxonomy</div>
-    <button id='str' class="btn btn-primary">show</button>
-    <button id="str1" class="btn btn-primary">show child</button>
-    <button id="str2" class="btn btn-primary">show sub child</button>
-    <div class="div1"></div>
-    <div class="div2"></div>
-    <div class="div3"></div>
-    <div class="div">
-
-    </div>
-	</div>
-</body>
+  <select class="parent" onchange="child()"></select>
+  <select class="child" onchange="child1()" style="display:none"></select>
+  <select class="child1" onchange="child2()" style="display:none"></select>
+  <select class="child2" onchange="child3()" style="display:none"></select>
+  <select class="child3" onchange="child4()" style="display:none"></select>
 <script>
-    var str = "";
-    var str1 = " ";
-    var str2 = " ";
-    var str3 = " ";
-    var str4 = " ";
-    var str5 = " ";
-    var str6 = " ";
-    var str7 = " ";
-    js();
-    var arr1 = [];
-    function js() {
-        
+var x;
+var len;
+function parent()
+{
+  const arr=[];
+  var obj={};
 const proxyUrl='https://cors-anywhere.herokuapp.com/';
-fetch( proxyUrl + 'https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt')
-            .then(e => e.text())
-            .then(req => {
-                var a = req.split("\n");
-                a.splice(0, 1);
-                a.forEach(element => {
-                    element = element.split('-');
-                    var test = element[1].split('>');
-
-                    var n = test[test.length - 1];
-                    if (test.length == 2) {
-                        arr1.push(test[test.length - 1]);
-                    }
-                    console.log(arr1[arr1.length - 1]);
-                    if (test.length == 1) {
-
-                        for (i = 0; i < test.length; i++) {
-                            str += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                        }
-                        $(".div1").append((str + n + "<span  > > </span>" + "<br>"));
-
-                        str = " ";
-                    }
-                    $("#str").click(function () {
-                        $(".div1").remove();
-                        if (test.length == 1) {
-
-                            for (i = 0; i < test.length; i++) {
-                                str2 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                            }
-                            $(".div").append((str2 + n + "<br>"));
-
-                            str2 = " ";
-                        }
-                        if (test.length == 2) {
-
-                            for (i = 0; i < test.length; i++) {
-                                str1 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                            }
-                            $(".div").append((str1 + n + "<span  > > </span>" + "<br>"));
-                            str1 = " ";
-                        }
-
-                    });
-                    $("#str1").click(function () {
-                        $(".div1").remove();
-                        $(".div").remove();
-                        if (test.length == 1) {
-
-                            for (i = 0; i < test.length; i++) {
-                                str2 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                            }
-                            $(".div2").append((str2 + n + "<br>"));
-
-                            str2 = " ";
-                        }
-                        if (test.length == 2) {
-
-                            for (i = 0; i < test.length; i++) {
-                                str1 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                            }
-                            $(".div2").append((str1 + n + "<br>"));
-                            str1 = " ";
-                        }
-                        if (test.length == 3) {
-
-                            for (i = 0; i < test.length; i++) {
-                                str3 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                            }
-                            $(".div2").append((str3 + n + "<span  > > </span>" + "<br>"));
-                            str3 = " ";
-                        }
-                    });
-                    $("#str2").click(function () {
-                        $(".div1").remove();
-                        $(".div").remove();
-                        $(".div2").remove();
-                        if (test.length == 1) {
-
-                            for (i = 0; i < test.length; i++) {
-                                str5 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                            }
-                            $(".div3").append((str5 + n + "<br>"));
-
-                            str5 = " ";
-                        }
-                        if (test.length == 2) {
-
-                            for (i = 0; i < test.length; i++) {
-                                str6 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                            }
-                            $(".div3").append((str6 + n + "<br>"));
-                            str6 = " ";
-                        }
-                        if (test.length == 3) {
-
-                            for (i = 0; i < test.length; i++) {
-                                str7 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                            }
-                            $(".div3").append((str7 + n + "<br>"));
-                            str7 = " ";
-                        }
-                        if (test.length == 4) {
-
-                            for (i = 0; i < test.length; i++) {
-                                str4 += "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                            }
-                            $(".div3").append((str4 + n + "<span  > > </span>" + "<br>"));
-                            str4 = " ";
-                        }
-                        console.log(arr1[arr1.length - 1]);
-                    });
-                });
-            })
+fetch( proxyUrl + 'https://www.google.com/basepages/producttype/taxonomy.en-US.txt' )
+.then(e=>e.text())
+.then(req => {
+     var s = req.split('\n');
+     s.shift();
+     s.pop();
+     len=s.length;
+     
+     
+    for(var i=0;i<s.length;i++)
+    {
+       x = s[i].split('>');
+       obj = Object.assign({}, x);
+       console.log(obj); 
+     if(x.length==1)
+     {  
+    
+      $(".parent").append(`<option value='${x}'>${x}</option>`);  
+     }
+     
     }
+  })
+}
+
+parent();
+
+function child()
+{
+  $(".child").show();
+  $(".child").html("");
+  var val=$(".parent").val();
+  const proxyUrl='https://cors-anywhere.herokuapp.com/';
+fetch( proxyUrl + 'https://www.google.com/basepages/producttype/taxonomy.en-US.txt' )
+.then(e=>e.text())
+.then(req => {
+     var s = req.split('\n');
+     s.shift();
+     s.pop();
+     len=s.length;
+    for(var i=0;i<s.length;i++)
+    {
+       x = s[i].split('>');
+     if(x.length==2 && x[0].trim()==val)
+     {  
+      $(".child").append(`<option value='${x[1]}'>${x[1]}</option>`);  
+     }
+     
+    }
+  })
+}
+
+function child1()
+{
+  $(".child1").show();
+  $(".child1").html("");
+  var val1=$(".child").val();
+  val1=val1.trim();
+  const proxyUrl='https://cors-anywhere.herokuapp.com/';
+fetch( proxyUrl + 'https://www.google.com/basepages/producttype/taxonomy.en-US.txt' )
+.then(e=>e.text())
+.then(req => {
+     var s = req.split('\n');
+     s.shift();
+     s.pop();
+     len=s.length;
+    //  console.log(val1);
+    for(var i=0;i<s.length;i++)
+    {
+       x = s[i].split('>');
+
+       if(x.length==3 && x[1].trim()==val1)
+     {  
+    //  console.log(x[2]);
+     $(".child1").append(`<option value='${x[2]}'>${x[2]}</option>`);
+     }
+     
+    }
+  })
+}
+function child2()
+{
+  $(".child2").show();
+  $(".child2").html("");
+  var val1=$(".child1").val();
+  val1=val1.trim();
+  console.log(val1);
+  const proxyUrl='https://cors-anywhere.herokuapp.com/';
+fetch( proxyUrl + 'https://www.google.com/basepages/producttype/taxonomy.en-US.txt' )
+.then(e=>e.text())
+.then(req => {
+     var s = req.split('\n');
+     s.shift();
+     s.pop();
+     len=s.length;
+     console.log(val1);
+    for(var i=0;i<s.length;i++)
+    {
+       x = s[i].split('>');
+
+       if(x.length==4 && x[2].trim()==val1)
+     {  
+     console.log(x[3]);
+     $(".child2").append(`<option value='${x[3]}'>${x[3]}</option>`);
+     }
+     
+    }
+  })
+}
+function child3()
+{
+  $(".child3").show();
+  $(".child3").html("");
+  var val1=$(".child2").val();
+  val1=val1.trim();
+  console.log(val1);
+  const proxyUrl='https://cors-anywhere.herokuapp.com/';
+fetch( proxyUrl + 'https://www.google.com/basepages/producttype/taxonomy.en-US.txt' )
+.then(e=>e.text())
+.then(req => {
+     var s = req.split('\n');
+     s.shift();
+     s.pop();
+     len=s.length;
+     console.log(val1);
+    for(var i=0;i<s.length;i++)
+    {
+       x = s[i].split('>');
+
+       if(x.length==5 && x[3].trim()==val1)
+     {  
+     console.log(x[4]);
+     $(".child3").append(`<option value='${x[4]}'>${x[4]}</option>`);
+     }
+     
+    }
+  })
+}
 </script>
+
+</body>
 
 </html>
